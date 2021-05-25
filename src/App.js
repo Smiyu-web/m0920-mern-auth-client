@@ -25,7 +25,7 @@ function App() {
       }
 
       const tokenRes = await Axios.post(
-        "http://localhost:8080/users/tokenIsValid",
+        `${process.env.REACT_APP_SURVER_URL}/users/tokenIsValid`,
         null,
         {
           headers: { "x-auth-token": token },
@@ -33,9 +33,12 @@ function App() {
       );
 
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:8080/users/", {
-          headers: { "x-auth-token": token },
-        });
+        const userRes = await Axios.get(
+          `${process.env.REACT_APP_SURVER_URL}/users/`,
+          {
+            headers: { "x-auth-token": token },
+          }
+        );
 
         setUserData({
           token: token,

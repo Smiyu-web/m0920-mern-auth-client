@@ -24,12 +24,18 @@ const Register = () => {
         confirmPassword: passwordCheck,
         displayName,
       };
-      await Axios.post("http://localhost:8080/users/register", newUser);
+      await Axios.post(
+        `${process.env.REACT_APP_SURVER_URL}/users/register`,
+        newUser
+      );
 
-      const loginRes = await Axios.post("http://localhost:8080/users/login", {
-        email,
-        password,
-      });
+      const loginRes = await Axios.post(
+        `${process.env.REACT_APP_SURVER_URL}/users/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       setUserData({
         user: loginRes.data.user,
